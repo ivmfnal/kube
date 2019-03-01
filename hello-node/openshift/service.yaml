@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+   labels:
+     app: hello-node
+   name: hello-node-68
+spec:
+   externalIPs:
+   - 131.225.161.68
+   ports:
+   - name: 8080-tcp
+     port: 8080
+     protocol: TCP
+     targetPort: 8080
+   selector:
+     app: hello-node
+   type: ClusterIP

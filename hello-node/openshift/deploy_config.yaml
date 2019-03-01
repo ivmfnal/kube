@@ -1,0 +1,57 @@
+{
+  "kind": "DeploymentConfig",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "hello-node"
+  },
+  "spec": {
+    "template": { 
+      "metadata": {
+        "labels": {
+          "app": "hello-node",
+          "deploymentconfig": "hello-node"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "hello-node",
+            "image": "openshift/hello-node",
+            "ports": [
+              {
+                "containerPort": 8080,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "replicas": 1, 
+    "selector": {
+      "app": "hello-node",
+      "deploymentconfig": "hello-node"
+    },
+    "triggers": [
+      {
+        "type": "ConfigChange" 
+      },
+      {
+        "type": "ImageChange", 
+        "imageChangeParams": {
+          "automatic": true,
+          "containerNames": [
+            "hello-node"
+          ],
+          "from": {
+            "kind": "ImageStreamTag",
+            "name": "hello-node:latest"
+          }
+        }
+      }
+    ],
+    "strategy": { 
+      "type": "Rolling"
+    }
+  }
+}

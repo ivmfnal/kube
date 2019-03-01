@@ -1,6 +1,0 @@
-source:
-  type: "Git"
-  git: 
-    uri: "https://github.com/ivmfnal/kube"
-    ref: "master"
-  contextDir: "hello-node/docker"
