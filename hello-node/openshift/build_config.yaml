@@ -9,3 +9,10 @@ spec:
       uri: "https://github.com/ivmfnal/kube"
       ref: "master"
     contextDir: "hello-node/docker"
+  strategy: 
+    type: "Docker"
+  output: 
+    to:
+      kind: "ImageStreamTag"
+      name: "hello-node:latest"
+
